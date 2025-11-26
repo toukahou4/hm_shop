@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+
+class HmCategory extends StatefulWidget {
+  HmCategory({Key? key}) : super(key: key);
+
+  @override
+  _HmCategoryState createState() => _HmCategoryState();
+}
+
+class _HmCategoryState extends State<HmCategory> {
+  @override
+  Widget build(BuildContext context) {
+    // return ListView();
+    // 返回一个横向滚动的组件--必须得设高度
+    return SizedBox(
+      height: 100.0,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Container(
+            alignment: Alignment.center,
+            width: 80.0,
+            height: 100.0,
+            color: Colors.blue,
+            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text('分类$index', style: TextStyle(color: Colors.white),),
+          );
+        },
+      ),
+    );
+
+  }
+}
