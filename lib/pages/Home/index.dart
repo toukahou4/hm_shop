@@ -4,6 +4,7 @@ import 'package:hm_shop/components/Home/HmHot.dart';
 import 'package:hm_shop/components/Home/HmMoreList.dart';
 import 'package:hm_shop/components/Home/HmSuggestion.dart';
 import 'package:hm_shop/components/Home/Hmslider.dart';
+import 'package:hm_shop/viewmodels/home.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key? key}) : super(key: key);
@@ -13,6 +14,11 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final List<BannerItem> _bannerList = [
+    BannerItem(id: "1", imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg"),
+    BannerItem(id: "2", imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.jpg"),
+    BannerItem(id: "3", imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg"),
+  ];
 
   // 获取滚动容器的内容
   List<Widget> _getScrollChildern() {
@@ -20,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
 
       // 包裹普通widget的sliver家族的组件
       SliverToBoxAdapter( 
-        child: HmSlider(), // 轮播图组件
+        child: HmSlider(bannerList: _bannerList), // 轮播图组件
       ),
 
       // 放置分类组件
