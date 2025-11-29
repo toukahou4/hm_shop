@@ -17,3 +17,9 @@ Future<List<CategoryItem>> getCategoryListApi() async {
       .map((item) => CategoryItem.fromJson(item as Map<String, dynamic>))
       .toList();
 }
+
+// 获取特惠推荐
+Future<SpecialOffersResult> getSpecialOffersApi() async {
+  // 发送get请求
+  return SpecialOffersResult.fromJson(await dioRequest.get(HttpConstants.PRODUCT_LIST));
+}

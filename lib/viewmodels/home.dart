@@ -14,296 +14,8 @@ class BannerItem {
 
 // Map<String ,dynamic> 是一个泛型类，它可以存储任意类型的键值对
 // 每一个轮播图具体类型
-
 // flutter必须强制转化，没有隐式转化
 
-        // {
-        //     "id": "1181622001",
-        //     "name": "气质女装",
-        //     "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c1/qznz.png",
-        //     "children": [
-        //         {
-        //             "id": "1191110001",
-        //             "name": "半裙",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/qznz_bq.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110002",
-        //             "name": "衬衫",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/qznz_cs.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110022",
-        //             "name": "T恤",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/qznz_tx.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110023",
-        //             "name": "针织衫",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/qznz_zzs.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110024",
-        //             "name": "夹克",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/qznz_jk.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110025",
-        //             "name": "卫衣",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/qznz_wy.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110028",
-        //             "name": "背心",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/qznz_bx.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         }
-        //     ],
-        //     "goods": null
-        // },
-        // {
-        //     "id": "1181622002",
-        //     "name": "女士内衣",
-        //     "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c1/nsny.png",
-        //     "children": [
-        //         {
-        //             "id": "1191110003",
-        //             "name": "文胸",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/nsny_wx.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110004",
-        //             "name": "短袜",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/nsny_dw.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110005",
-        //             "name": "起居服",
-        //             "picture": "https://yanxuan.nosdn.127.net/f5797ca77cfe413e7753ec69f9bd4bb1.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110029",
-        //             "name": "内裤",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/nsny_nk.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110030",
-        //             "name": "连裤袜",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/nsny_lkw.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110033",
-        //             "name": "塑身衣/塑身裤",
-        //             "picture": "https://yanxuan.nosdn.127.net/f5797ca77cfe413e7753ec69f9bd4bb1.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110034",
-        //             "name": "内衣套装",
-        //             "picture": "https://yanxuan.nosdn.127.net/f5797ca77cfe413e7753ec69f9bd4bb1.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         }
-        //     ],
-        //     "goods": null
-        // },
-        // {
-        //     "id": "1181622003",
-        //     "name": "箱包手袋",
-        //     "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c1/xbsd.png",
-        //     "children": [
-        //         {
-        //             "id": "1191110006",
-        //             "name": "单肩包",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/xbsd_djb.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110007",
-        //             "name": "双肩包",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/xbsd_sjb.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110008",
-        //             "name": "手提包",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/xbsd_stb.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110026",
-        //             "name": "斜挎包",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/xbsd_xkb.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         }
-        //     ],
-        //     "goods": null
-        // },
-        // {
-        //     "id": "1181622004",
-        //     "name": "时尚饰品",
-        //     "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c1/sssp.png",
-        //     "children": [
-        //         {
-        //             "id": "1191110009",
-        //             "name": "耳饰",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/sssp_es.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110010",
-        //             "name": "项链",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/sssp_xl.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110011",
-        //             "name": "手链/手镯",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/sssp_sz.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110012",
-        //             "name": "戒指",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/sssp_jz.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110014",
-        //             "name": "挂饰及其他",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/sssp_js.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         }
-        //     ],
-        //     "goods": null
-        // },
-        // {
-        //     "id": "1181622005",
-        //     "name": "服饰配件",
-        //     "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c1/zspj.png",
-        //     "children": [
-        //         {
-        //             "id": "1191110015",
-        //             "name": "渔夫帽",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/fspj_yfm.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110016",
-        //             "name": "贝雷帽",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/fspj_blm.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110017",
-        //             "name": "报童帽",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/fspj_baotongmao.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110018",
-        //             "name": "草帽",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/fspj_cm.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110036",
-        //             "name": "手套",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/fspj_st.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110037",
-        //             "name": "围巾丝巾",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/fspj_wjsj.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110040",
-        //             "name": "针织帽",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/fspj_zzm.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         }
-        //     ],
-        //     "goods": null
-        // },
-        // {
-        //     "id": "1181622006",
-        //     "name": "时尚女鞋",
-        //     "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c1/ssnx.png",
-        //     "children": [
-        //         {
-        //             "id": "1191110042",
-        //             "name": "休闲鞋",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/ssnx_xxx.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         }
-        //     ],
-        //     "goods": null
-        // },
-        // {
-        //     "id": "1181622009",
-        //     "name": "眼镜配件",
-        //     "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c1/yypj.png",
-        //     "children": [
-        //         {
-        //             "id": "1191110020",
-        //             "name": "太阳镜",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/yjpj_tyj.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         },
-        //         {
-        //             "id": "1191110021",
-        //             "name": "光学眼镜",
-        //             "picture": "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meikou/c2/yjpj_gxyj.png?quality=95&imageView",
-        //             "children": null,
-        //             "goods": null
-        //         }
-        //     ],
-        //     "goods": null
-        // }
 // 根据json编写class对象和工厂转化函数
 class CategoryItem {
   final String id;
@@ -333,3 +45,89 @@ class CategoryItem {
     );
   }
 }
+
+class SpecialOffersResult {
+  final String id;
+  final String title;
+  final List<SpecialOfferSubType> subTypes;
+  SpecialOffersResult({required this.id, required this.title, required this.subTypes});
+  factory SpecialOffersResult.fromJson(Map<String, dynamic> json) {
+    return SpecialOffersResult(
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+      subTypes: (json['subTypes'] as List? ?? [])
+          .map((e) => SpecialOfferSubType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class SpecialOfferSubType {
+  final String id;
+  final String title;
+  final GoodsItems goodsItems;
+  SpecialOfferSubType({required this.id, required this.title, required this.goodsItems});
+  factory SpecialOfferSubType.fromJson(Map<String, dynamic> json) {
+    return SpecialOfferSubType(
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+      goodsItems: GoodsItems.fromJson(json['goodsItems'] ?? {}),
+    );
+  }
+}
+
+class GoodsItems {
+  final int counts;
+  final int pageSize;
+  final int pages;
+  final int page;
+  final List<GoodsItem> items;
+  GoodsItems({
+    required this.counts,
+    required this.pageSize,
+    required this.pages,
+    required this.page,
+    required this.items,
+  });
+  factory GoodsItems.fromJson(Map<String, dynamic> json) {
+    int parseInt(dynamic v) => v is int ? v : int.tryParse('${v ?? ''}') ?? 0;
+    return GoodsItems(
+      counts: parseInt(json['counts']),
+      pageSize: parseInt(json['pageSize']),
+      pages: parseInt(json['pages']),
+      page: parseInt(json['page']),
+      items: (json['items'] as List? ?? [])
+          .map((e) => GoodsItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class GoodsItem {
+  final String id;
+  final String name;
+  final String? desc;
+  final String price;
+  final String picture;
+  final int orderNum;
+  GoodsItem({
+    required this.id,
+    required this.name,
+    this.desc,
+    required this.price,
+    required this.picture,
+    required this.orderNum,
+  });
+  factory GoodsItem.fromJson(Map<String, dynamic> json) {
+    int parseInt(dynamic v) => v is int ? v : int.tryParse('${v ?? ''}') ?? 0;
+    return GoodsItem(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      desc: json['desc'],
+      price: json['price']?.toString() ?? '',
+      picture: json['picture'] ?? '',
+      orderNum: parseInt(json['orderNum']),
+    );
+  }
+}
+

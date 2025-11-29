@@ -23,6 +23,12 @@ class _HomeViewState extends State<HomeView> {
 
   List<CategoryItem> _categoryList = []; // 分类列表
 
+  SpecialOffersResult _specialOffersResult = SpecialOffersResult(
+    id: "",
+    title: "",
+    subTypes: [],
+  ); // 特惠推荐
+
   // 获取滚动容器的内容
   List<Widget> _getScrollChildern() {
     return [
@@ -41,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
 
       SliverToBoxAdapter(child: SizedBox(height: 10.0,)),
       SliverToBoxAdapter(
-        child: HmSuggestion(), // 分类组件
+        child: HmSuggestion(specialOffersResult: _specialOffersResult), // 分类组件
       ),
 
       SliverToBoxAdapter(child: SizedBox(height: 10.0,)),
@@ -74,6 +80,8 @@ class _HomeViewState extends State<HomeView> {
     _getBannerList();
     // 初始化分类列表
     _getCategoryList();
+    // 初始化特惠推荐
+    _getSpecialOffers();
   }
 
   void _getBannerList() async {
@@ -89,6 +97,15 @@ class _HomeViewState extends State<HomeView> {
     await getCategoryListApi().then((value) {
       setState(() {
         _categoryList.addAll(value);
+      });
+    });
+  }
+
+  // 获取特惠推荐
+  void _getSpecialOffers() async {
+    await getSpecialOffersApi().then((value) {
+      setState(() {
+        _specialOffersResult = value;
       });
     });
   }
