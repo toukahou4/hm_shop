@@ -61,9 +61,9 @@ class _HmSliderState extends State<HmSlider> {
           child: Row(
             children: [
               SizedBox(width: 10.0,),
-              Icon(Icons.search, color: Colors.grey,),
+              Icon(Icons.search, color: Colors.white,),
               SizedBox(width: 10.0,),
-              Text('搜索', style: TextStyle(color: Colors.grey, fontSize: 16.0),),
+              Text('搜索', style: TextStyle(color: Colors.white, fontSize: 16.0),),
             ],
           ),
         ),
