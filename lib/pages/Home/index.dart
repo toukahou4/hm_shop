@@ -21,6 +21,8 @@ class _HomeViewState extends State<HomeView> {
     // BannerItem(id: "3", imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg"),
   ];
 
+  List<CategoryItem> _categoryList = []; // 分类列表
+
   // 获取滚动容器的内容
   List<Widget> _getScrollChildern() {
     return [
@@ -34,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
       SliverToBoxAdapter(child: SizedBox(height: 10.0,)),
       // SliverGrid SliverList只能纵向排列
       SliverToBoxAdapter(
-        child: HmCategory(), // 分类组件
+        child: HmCategory(categoryList: _categoryList), // 分类组件
       ),
 
       SliverToBoxAdapter(child: SizedBox(height: 10.0,)),
@@ -70,12 +72,23 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     // 初始化banner列表
     _getBannerList();
+    // 初始化分类列表
+    _getCategoryList();
   }
 
   void _getBannerList() async {
     await getBannerListApi().then((value) {
       setState(() {
         _bannerList.addAll(value);
+      });
+    });
+  }
+
+  // 获取分类列表
+  void _getCategoryList() async {
+    await getCategoryListApi().then((value) {
+      setState(() {
+        _categoryList.addAll(value);
       });
     });
   }
