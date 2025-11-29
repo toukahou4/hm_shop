@@ -23,3 +23,15 @@ Future<SpecialOffersResult> getSpecialOffersApi() async {
   // 发送get请求
   return SpecialOffersResult.fromJson(await dioRequest.get(HttpConstants.PRODUCT_LIST));
 }
+
+// 获取爆款推荐
+Future<SpecialOffersResult> getInVogueApi() async {
+  // 发送get请求
+  return SpecialOffersResult.fromJson(await dioRequest.get(HttpConstants.IN_VOGUE_LIST));
+}
+
+// 获取一站式推荐
+Future<SpecialOffersResult> getOneStopApi() async {
+  // 发送get请求
+  return SpecialOffersResult.fromJson(await dioRequest.get(HttpConstants.ONE_STOP_LIST));
+}
