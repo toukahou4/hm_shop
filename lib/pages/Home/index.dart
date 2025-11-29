@@ -100,6 +100,21 @@ class _HomeViewState extends State<HomeView> {
     _getOneStop();
     // 初始化推荐列表
     _getRecommendList();
+    // 注册事件
+    _registerEvent();
+    // WidgetsBinding.instance.addPostFrameCallback((_) { print(_scrollController.hasClients); });
+  }
+
+  void _registerEvent() {
+    // 监听滚动事件
+    _scrollController.addListener(() {
+
+      // 监听滚动到底部的事件
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent -50) {
+        // 加载更多数据
+        _getRecommendList();
+      }
+    });
   }
 
   // 获取轮播图列表
@@ -149,21 +164,42 @@ class _HomeViewState extends State<HomeView> {
 
   // 获取推荐列表
   List<GoodDetailItem> _recommendList = [];
+  // 页码
+  int _page = 1;
+  // 同时只能加载一个请求
+  bool _isLoading = false; // 当前正在加载状态
+  bool _hasMore = true; // 是否还有更多数据
   // 获取推荐列表
   void _getRecommendList() async {
+    // 当已经有请求正在加载 或者已经没有下一页了 就放弃请求
+    if (_isLoading || !_hasMore) {
+      return;
+    }
+    _isLoading = true; // 占在加载状态
+    int requestLimit = _page * 10;
     await getRecommendListApi({
       // "pageNum": 1,
       // "pageSize": 10,
-      "limit": 10,
+      "limit": requestLimit,
     }).then((value) {
       setState(() {
+        // 当请求的数量大于等于10时 说明还有下一页数据
+        if (value.length >= 10) {
+          _page++;
+        }
         _recommendList.addAll(value);
+        _isLoading = false;
+        _hasMore = value.length == 10;
       });
     });
   }
 
+  final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView( slivers: _getScrollChildern(),); // sliver家族的内容
+    return CustomScrollView( 
+      controller: _scrollController, // 绑定控制器
+      slivers: _getScrollChildern(),
+    ); // sliver家族的内容
   }
 }
