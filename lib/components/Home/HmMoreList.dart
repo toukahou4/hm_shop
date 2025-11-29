@@ -1,34 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:hm_shop/viewmodels/home.dart';
 
 class HmMoreList extends StatefulWidget {
-  HmMoreList({Key? key}) : super(key: key);
+  // 推荐列表
+  final List<GoodDetailItem> recommendList;
+
+  HmMoreList({Key? key, required this.recommendList}) : super(key: key);
 
   @override
   _HmMoreListState createState() => _HmMoreListState();
 }
 
 class _HmMoreListState extends State<HmMoreList> {
+  Widget _getChildren(int index) {
+    return Container(
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: AspectRatio(
+              aspectRatio: 1.0,
+              child: Image.network(
+                widget.recommendList[index].picture,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    "Lib/assets/home_cmd_inner.png",
+                    fit: BoxFit.cover,
+                  ); // Image.asset
+                },
+              ), // Image.network
+            ), // AspectRatio
+          ), // ClipRRect
+          SizedBox(height: 6),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              widget.recommendList[index].name,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            ), // Text
+          ), // Padding
+          SizedBox(height: 6),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    text: "${widget.recommendList[index].price}",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                    ), // TextStyle
+                    children: [
+                      TextSpan(text: " "),
+                      TextSpan(
+                        text: "${widget.recommendList[index].price}",
+                        style: TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Text(
+                  "${widget.recommendList[index].payCount}人付款",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // 必须是Sliver家族的组件
     return SliverGrid.builder(
-      itemCount: 10,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      itemCount: widget.recommendList.length,
+      gridDelegate:
         // 网格是两列
-        crossAxisCount: 2,
-        // 主轴间距
-        mainAxisSpacing: 10.0,
-        // 交叉轴间距
-        crossAxisSpacing: 10.0,
-        // childAspectRatio: 0.8,
-      ),
-      itemBuilder: (context, index) {
-        return Container(
-          color: Colors.blue,
-          alignment: Alignment.center,
-          child: Text('更多推荐$index', style: TextStyle(color: Colors.white),),
-        );
+        SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          childAspectRatio: 0.75,
+        ), // SliverGridDelegateWithFixedCrossAxisCount
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: _getChildren(index),
+        ); // Padding
       },
-    );
+    ); // SliverGrid.builder
   }
 }
