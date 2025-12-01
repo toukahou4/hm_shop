@@ -253,6 +253,7 @@ class _HomeViewState extends State<HomeView> {
               padding: EdgeInsets.only(top: _paddingTop),
               duration: Duration(microseconds: 300),
               child: CustomScrollView( 
+                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                 controller: _scrollController, // 绑定控制器
                 slivers: _getScrollChildern(),
               ),
