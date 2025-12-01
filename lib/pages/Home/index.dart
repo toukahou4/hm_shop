@@ -5,6 +5,7 @@ import 'package:hm_shop/components/Home/HmHot.dart';
 import 'package:hm_shop/components/Home/HmMoreList.dart';
 import 'package:hm_shop/components/Home/HmSuggestion.dart';
 import 'package:hm_shop/components/Home/Hmslider.dart';
+import 'package:hm_shop/utils/ToastUtils.dart';
 import 'package:hm_shop/viewmodels/home.dart';
 
 class HomeView extends StatefulWidget {
@@ -88,22 +89,30 @@ class _HomeViewState extends State<HomeView> {
 
   void initState() {
     super.initState();
-    // 初始化banner列表
-    _getBannerList();
-    // 初始化分类列表
-    _getCategoryList();
-    // 初始化特惠推荐
-    _getSpecialOffers();
-    // 初始化爆款推荐
-    _getInVogue();
-    // 初始化一站式推荐
-    _getOneStop();
-    // 初始化推荐列表
-    _getRecommendList();
+    // // 初始化banner列表
+    // _getBannerList();
+    // // 初始化分类列表
+    // _getCategoryList();
+    // // 初始化特惠推荐
+    // _getSpecialOffers();
+    // // 初始化爆款推荐
+    // _getInVogue();
+    // // 初始化一站式推荐
+    // _getOneStop();
+    // // 初始化推荐列表
+    // _getRecommendList();
+    Future.microtask(() {
+        _paddingTop = 100;
+        _key.currentState?.show();
+        setState(() {});
+      } );
     // 注册事件
     _registerEvent();
     // WidgetsBinding.instance.addPostFrameCallback((_) { print(_scrollController.hasClients); });
   }
+
+  // initState ⇒ build ⇒ 下拉刷新组件 ⇒ 才可以操作它
+  // Future.micoTask
 
   void _registerEvent() {
     // 监听滚动事件
@@ -118,48 +127,53 @@ class _HomeViewState extends State<HomeView> {
   }
 
   // 获取轮播图列表
-  void _getBannerList() async {
-    await getBannerListApi().then((value) {
-      setState(() {
-        _bannerList.addAll(value);
-      });
-    });
+  Future<void> _getBannerList() async {
+    _bannerList = await getBannerListApi();
+    // await getBannerListApi().then((value) {
+    //   setState(() {
+    //     _bannerList.addAll(value);
+    //   });
+    // });
   }
 
   // 获取分类列表
-  void _getCategoryList() async {
-    await getCategoryListApi().then((value) {
-      setState(() {
-        _categoryList.addAll(value);
-      });
-    });
+  Future<void> _getCategoryList() async {
+    _categoryList = await getCategoryListApi();
+    // await getCategoryListApi().then((value) {
+    //   setState(() {
+    //     _categoryList.addAll(value);
+    //   });
+    // });
   }
 
   // 获取特惠推荐
-  void _getSpecialOffers() async {
-    await getSpecialOffersApi().then((value) {
-      setState(() {
-        _specialOffersResult = value;
-      });
-    });
+  Future<void> _getSpecialOffers() async {
+    _specialOffersResult = await getSpecialOffersApi();
+    // await getSpecialOffersApi().then((value) {
+    //   setState(() {
+    //     _specialOffersResult = value;
+    //   });
+    // });
   }
 
   // 获取爆款推荐
-  void _getInVogue() async {
-    await getInVogueApi().then((value) {
-      setState(() {
-        _inVogueResult = value;
-      });
-    });
+  Future<void> _getInVogue() async {
+    _inVogueResult = await getInVogueApi();
+    // await getInVogueApi().then((value) {
+    //   setState(() {
+    //     _inVogueResult = value;
+    //   });
+    // });
   }
 
   // 获取一站式推荐
-  void _getOneStop() async {
-    await getOneStopApi().then((value) {
-      setState(() {
-        _oneStopResult = value;
-      });
-    });
+  Future<void> _getOneStop() async {
+    _oneStopResult = await getOneStopApi();
+    // await getOneStopApi().then((value) {
+    //   setState(() {
+    //     _oneStopResult = value;
+    //   });
+    // });
   }
 
   // 获取推荐列表
@@ -170,36 +184,81 @@ class _HomeViewState extends State<HomeView> {
   bool _isLoading = false; // 当前正在加载状态
   bool _hasMore = true; // 是否还有更多数据
   // 获取推荐列表
-  void _getRecommendList() async {
+  Future<void> _getRecommendList() async {
     // 当已经有请求正在加载 或者已经没有下一页了 就放弃请求
     if (_isLoading || !_hasMore) {
       return;
     }
     _isLoading = true; // 占在加载状态
     int requestLimit = _page * 10;
-    await getRecommendListApi({
-      // "pageNum": 1,
-      // "pageSize": 10,
-      "limit": requestLimit,
-    }).then((value) {
-      setState(() {
-        // 当请求的数量大于等于10时 说明还有下一页数据
-        if (value.length >= 10) {
-          _page++;
-        }
-        _recommendList.addAll(value);
-        _isLoading = false;
-        _hasMore = value.length == 10;
-      });
-    });
+    _recommendList = await getRecommendListApi({"limit": requestLimit});
+    _isLoading = false;
+    if (_recommendList.length < requestLimit) {
+      _hasMore = false;
+      return;
+    }
+    _page++;
+
+    // await getRecommendListApi({
+    //   // "pageNum": 1,
+    //   // "pageSize": 10,
+    //   "limit": requestLimit,
+    // }).then((value) {
+    //   setState(() {
+    //     // 当请求的数量大于等于10时 说明还有下一页数据
+    //     if (value.length >= 10) {
+    //       _page++;
+    //     }
+    //     _recommendList.addAll(value);
+    //     _isLoading = false;
+    //     _hasMore = value.length == 10;
+    //   });
+    // });
+  }
+
+  Future<void> _onRefresh() async {
+    int _page = 1;
+    // 同时只能加载一个请求
+    bool _isLoading = false; // 当前正在加载状态
+    bool _hasMore = true; // 是否还有更多数据
+    // 初始化banner列表
+    await _getBannerList();
+    // 初始化分类列表
+    await _getCategoryList();
+    // 初始化特惠推荐
+    await _getSpecialOffers();
+    // 初始化爆款推荐
+    await _getInVogue();
+    // 初始化一站式推荐
+    await _getOneStop();
+    // 初始化推荐列表
+    await _getRecommendList();
+    // 数据获取成功 刷新成功了
+    Toastutils.showToast(context, "刷新成功");
+    _paddingTop = 0;
+    setState(() {});
   }
 
   final ScrollController _scrollController = ScrollController();
+
+  // GlobalKey是一个方法可以创建一个key绑定到Widget不见上，可以操作Widget部件
+  final GlobalKey<RefreshIndicatorState> _key = GlobalKey<RefreshIndicatorState>();
+  double _paddingTop = 0;
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView( 
-      controller: _scrollController, // 绑定控制器
-      slivers: _getScrollChildern(),
-    ); // sliver家族的内容
+    return RefreshIndicator(
+      key: _key,
+      onRefresh: _onRefresh,
+      child: AnimatedContainer(
+              padding: EdgeInsets.only(top: _paddingTop),
+              duration: Duration(microseconds: 300),
+              child: CustomScrollView( 
+                controller: _scrollController, // 绑定控制器
+                slivers: _getScrollChildern(),
+              ),
+            )
+      );
   }
 }
+
+// 动画组件
