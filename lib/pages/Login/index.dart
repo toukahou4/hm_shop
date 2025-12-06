@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hm_shop/aip/user.dart';
+import 'package:hm_shop/utils/ToastUtils.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -66,6 +69,23 @@ class _LoginPageState extends State<LoginPage> {
     ); // TextFormField
   }
 
+  _login() async {
+    // 调用登录接口
+    try {
+      final res = await loginApi({
+        "account": _phoneController.text,
+        "password": _codeController.text,
+      });
+      print(res);
+      ToastUtils.showToast(context,"登录成功");
+      Navigator.pop(context); //返回上个页面
+    } catch (e) {
+      print(e.toString());
+      ToastUtils.showToast(context, (e as DioException).message);
+    }
+    // 登录成功，跳转到首页
+    // http状态码200表示成功，业务状态码 业务执行成功 1
+  }
   // 登录按钮Widget
   Widget _buildLoginButton() {
     return SizedBox(
@@ -78,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
             // 校验通过，执行登录操作
             if (_isChecked == true) {
               // 勾选了同意隐私条款和用户协议
-              print("登录成功");
+              _login();
             } else {
               // 未勾选同意隐私条款和用户协议
               showDialog(

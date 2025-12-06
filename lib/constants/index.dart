@@ -14,6 +14,7 @@ class HttpConstants {
   static const String ONE_STOP_LIST  = '/hot/oneStop'; // 一站式推荐
   static const String RECOMMEND_LIST = '/home/recommend'; // 推荐列表
   static const String GUESS_LIST = '/home/goods/guessLike'; // 猜你喜欢的接口地址
+  static const String LOGIN = '/login'; // 登录接口地址
   // 返回的结构体是GoodsItems类型
   // 1.请求地址有
   // 2.请求类型是GoodsItems类型⇒items⇒List<GoodsItem>

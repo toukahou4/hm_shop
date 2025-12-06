@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Toastutils {
+class ToastUtils {
   // 阀门控制
   static bool showLoading = false;
   static void showToast(BuildContext context, String? msg) {

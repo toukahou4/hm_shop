@@ -38,7 +38,13 @@ class DioRequest {
       },
       onError: (error, handler) {
         // 在响应错误时做一些事情
-        return handler.reject(error); // 继续处理错误
+        // return handler.reject(error); // 继续处理错误
+        handler.reject(DioException(
+          requestOptions: error.requestOptions,
+          response: error.response,
+          type: DioExceptionType.badResponse,
+          message: error.response?.data["msg"] ?? " ",
+        )); // 继续处理响应
       },
     ));
   }
@@ -47,6 +53,12 @@ class DioRequest {
   Future<dynamic> get(String url, {Map<String, dynamic>? params}) {
     return  _handleResponse(_dio.get(url, queryParameters: params)); 
   }
+
+  // post请求
+  Future<dynamic> post(String url, {Map<String, dynamic>? data}) {
+    return _handleResponse(_dio.post(url, data: data));
+  }
+
   // 近一步处理返回结果的函数
   Future<dynamic> _handleResponse(Future<Response<dynamic>> task) async {
     try {
@@ -57,9 +69,16 @@ class DioRequest {
         return data['result']; // 只要result结果
       }
       // 抛出异常
-      throw Exception(data['msg'] ?? '请求失败');
+      // throw Exception(data['msg'] ?? '请求失败');
+      throw DioException(
+        requestOptions: res.requestOptions,
+        response: res,
+        type: DioExceptionType.badResponse,
+        message: data['msg'] ?? '加载数据失败',
+      );
     } catch (e) {
-      throw Exception(e);
+      // throw Exception(e);
+      rethrow; // 不改变原来抛出的异常类型
     }
   } 
 }

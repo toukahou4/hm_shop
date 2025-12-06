@@ -234,7 +234,7 @@ class _HomeViewState extends State<HomeView> {
     // 初始化推荐列表
     await _getRecommendList();
     // 数据获取成功 刷新成功了
-    Toastutils.showToast(context, "刷新成功");
+    ToastUtils.showToast(context, "刷新成功");
     _paddingTop = 0;
     setState(() {});
   }
