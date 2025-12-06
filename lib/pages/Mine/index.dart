@@ -15,7 +15,9 @@ class MineView extends StatefulWidget {
 
 class _MineViewState extends State<MineView> {
 
-  final UserController _userController = Get.put(UserController());
+  // 因为在首页就put了，而且只能put一次，所以这里要改成find
+  // final UserController _userController = Get.put(UserController());
+  final UserController _userController = Get.find();
   
   Widget _buildHeader() {
     return Container(

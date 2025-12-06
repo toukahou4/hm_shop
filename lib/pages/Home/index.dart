@@ -217,10 +217,10 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<void> _onRefresh() async {
-    int _page = 1;
-    // 同时只能加载一个请求
-    bool _isLoading = false; // 当前正在加载状态
-    bool _hasMore = true; // 是否还有更多数据
+    // int _page = 1;
+    // // 同时只能加载一个请求
+    // bool _isLoading = false; // 当前正在加载状态
+    // bool _hasMore = true; // 是否还有更多数据
     // 初始化banner列表
     await _getBannerList();
     // 初始化分类列表

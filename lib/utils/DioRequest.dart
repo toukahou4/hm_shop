@@ -1,7 +1,10 @@
 // 基于Dio进行二次封装
 
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:hm_shop/constants/index.dart';
+import 'package:hm_shop/stores/TokenManager.dart';
 
 class DioRequest {
   final _dio = Dio();
@@ -19,9 +22,17 @@ class DioRequest {
   // 添加拦截器
   void _addInterceptor(){
     _dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
+      onRequest: (request, handler) {
+        // 从本地存储中获取token request headers Authorization = "Bearer token"
+        if(tokenManager.getToken().isNotEmpty) {
+          // 如果token不为空，添加到请求头
+          // request.headers[HttpHeaders.authorizationHeader] = 'Bearer ${tokenManager.getToken()}';
+          request.headers = {
+            HttpHeaders.authorizationHeader: 'Bearer ${tokenManager.getToken()}',
+          };
+        }
         // 在发送请求之前做一些事情
-        return handler.next(options); // 继续发送请求
+        return handler.next(request); // 继续发送请求   
       },
       onResponse: (response, handler) {
         // 在响应成功时做一些事情
